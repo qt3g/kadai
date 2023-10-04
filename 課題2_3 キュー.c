@@ -20,7 +20,7 @@ typedef struct {
 void init(QUEUE* pQueue)
 {
     int i;
-    for (i = 0; i < MAX_LENGTH; i++) {
+    for (i = 0; i < MAX_LENGTH; i++) {//全要素に0を格納
         pQueue->array[i] = 0;
     }
     //  最初と最後の位置を先頭に。

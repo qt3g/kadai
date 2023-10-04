@@ -1,76 +1,69 @@
 /*
-ƒf[ƒ^\‘¢FƒLƒ…[iƒŠƒ“ƒOƒoƒbƒtƒ@j
+ãƒ‡ãƒ¼ã‚¿æ§‹é€ ï¼šã‚­ãƒ¥ãƒ¼ï¼ˆãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ï¼‰
 https://sevendays-study.com/algorithm/day2.html
 */
 #include <stdio.h>
 
-//  ”z—ñ‚ÌÅ‘å‚Ì‘å‚«‚³
+//  é…åˆ—ã®æœ€å¤§ã®å¤§ãã•
 #define MAX_LENGTH  100
 
 typedef struct {
-    //  ƒf[ƒ^‚ğŠi”[”‚é”z—ñ
+    //  ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´æ•°ã‚‹é…åˆ—
     int array[MAX_LENGTH];
-    //  Å‰‚ÌˆÊ’u
+    //  æœ€åˆã®ä½ç½®
     int first;
-    //  ÅŒã‚ÌˆÊ’u
+    //  æœ€å¾Œã®ä½ç½®
     int last;
 }QUEUE;
 
-//  ƒXƒ^ƒbƒN‚Ì‰Šú‰»
-void init(QUEUE*);
-//  ’l‚ÌƒGƒ“ƒLƒ…[
-int enqueu(QUEUE*, int);
-//  ’l‚ÌƒfƒLƒ…[
-int dequeue(QUEUE*, int*);
-
-void main() {
-    QUEUE q;
-    int value;
-    init(&q);   //  ƒXƒ^ƒbƒN‚ğ‰Šú‰»
-    //  1,2,3‚Ì‡‚Å’l‚ğƒvƒbƒVƒ…
-    enqueue(&q, 1);
-    enqueue(&q, 2);
-    enqueue(&q, 3);
-    //  ’l‚ğƒ|ƒbƒv
-    while (dequeue(&q, &value)) {
-        printf("%d ", value);
-    }
-    printf("\n");
-}
-
-//  ƒXƒ^ƒbƒN‚Ì‰Šú‰»
+//  ã‚¹ã‚¿ãƒƒã‚¯ã®åˆæœŸåŒ–
 void init(QUEUE* pQueue)
 {
     int i;
     for (i = 0; i < MAX_LENGTH; i++) {
         pQueue->array[i] = 0;
     }
-    //  Å‰‚ÆÅŒã‚ÌˆÊ’u‚ğæ“ª‚ÉB
+    //  æœ€åˆã¨æœ€å¾Œã®ä½ç½®ã‚’å…ˆé ­ã«ã€‚
     pQueue->first = 0;
     pQueue->last = 0;
 }
-//  ’l‚ÌƒvƒbƒVƒ…
+//  å€¤ã®ãƒ—ãƒƒã‚·ãƒ¥
 int enqueue(QUEUE* pQueue, int value)
 {
-    //  last‚ÌŸ‚ªAfirst‚È‚ç‚ÎA¸”s
+    //  lastã®æ¬¡ãŒã€firstãªã‚‰ã°ã€å¤±æ•—
     if ((pQueue->last + 1) % MAX_LENGTH == pQueue->first) {
         return 0;
     }
-    pQueue->array[pQueue->last] = value;          // ƒLƒ…[‚ÉV‚µ‚¢’l‚ğ“ü‚ê‚é
-    pQueue->last = (pQueue->last + 1) % MAX_LENGTH;   // last‚ÌXV
-    //  ƒf[ƒ^‚ğŠi”[‚µ‚«‚ê‚È‚©‚Á‚½
+    pQueue->array[pQueue->last] = value;          // ã‚­ãƒ¥ãƒ¼ã«æ–°ã—ã„å€¤ã‚’å…¥ã‚Œã‚‹
+    pQueue->last = (pQueue->last + 1) % MAX_LENGTH;   // lastã®æ›´æ–°
+    //  ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãã‚Œãªã‹ã£ãŸ
     return 1;
 }
-//  ’l‚Ìƒ|ƒbƒv
+//  å€¤ã®ãƒãƒƒãƒ—
 int dequeue(QUEUE* pQueue, int* pValue)
 {
-    //  ƒLƒ…[‚Éƒf[ƒ^‚ªˆê‚Â‚à‚È‚¢‚È‚çA¸”s
+    //  ã‚­ãƒ¥ãƒ¼ã«ãƒ‡ãƒ¼ã‚¿ãŒä¸€ã¤ã‚‚ãªã„ãªã‚‰ã€å¤±æ•—
     if (pQueue->first == pQueue->last)
     {
         return 0;
     }
-    *pValue = pQueue->array[pQueue->first];           // ‚¢‚¿‚Î‚ñæ“ª‚ÌƒLƒ…[‚ğ•Ô‚·€”õ
-    pQueue->first = (pQueue->first + 1) % MAX_LENGTH;   // ƒLƒ…[‚Ìæ“ª‚ğŸ‚ÉˆÚ“®‚·‚é
+    *pValue = pQueue->array[pQueue->first];           // ã„ã¡ã°ã‚“å…ˆé ­ã®ã‚­ãƒ¥ãƒ¼ã‚’è¿”ã™æº–å‚™
+    pQueue->first = (pQueue->first + 1) % MAX_LENGTH;   // ã‚­ãƒ¥ãƒ¼ã®å…ˆé ­ã‚’æ¬¡ã«ç§»å‹•ã™ã‚‹
     return 1;
 
+}
+
+void main() {
+    QUEUE q;
+    int value;
+    init(&q);   //  ã‚¹ã‚¿ãƒƒã‚¯ã‚’åˆæœŸåŒ–
+    //  1,2,3ã®é †ã§å€¤ã‚’ãƒ—ãƒƒã‚·ãƒ¥
+    enqueue(&q, 1);
+    enqueue(&q, 2);
+    enqueue(&q, 3);
+    //  å€¤ã‚’ãƒãƒƒãƒ—
+    while (dequeue(&q, &value)) {
+        printf("%d ", value);
+    }
+    printf("\n");
 }

@@ -7,41 +7,18 @@ https://sevendays-study.com/algorithm/day2.html
 //  配列の最大の大きさ
 #define MAX_LENGTH  100
 
+/*構造体*/
 typedef struct {
-    //  データを格納数る配列
-    int array[MAX_LENGTH];
-    //  現在の位置
-    int current;
+    int array[MAX_LENGTH];    //  データを格納数る配列
+    int current;            //  現在の位置
 }STACK;
-
-//  スタックの初期化
-void init(STACK*);
-//  値のプッシュ
-int push(STACK*, int);
-//  値のポップ
-int pop(STACK*, int*);
-
-void main() {
-    STACK s;
-    int value;
-    init(&s);   //  スタックを初期化
-    //  1,2,3の順で値をプッシュ
-    push(&s, 1);
-    push(&s, 2);
-    push(&s, 3);
-    //  値をポップ
-    while (pop(&s, &value)) {
-        printf("%d ", value);
-    }
-    printf("\n");
-}
 
 //  スタックの初期化
 void init(STACK* pStack)
 {
     int i;
-    for (i = 0; i < MAX_LENGTH; i++) {
-        pStack->array[i] = 0;
+    for (i = 0; i < MAX_LENGTH; i++) {//全要素ぶんループ
+        pStack->array[i] = 0;//0を格納
     }
     //  カレントの値を0に。
     pStack->current = 0;
@@ -68,4 +45,19 @@ int pop(STACK* pStack, int* pValue)
         return 1;
     }
     return 0;
+}
+
+void main() {//メイン関数
+    STACK s;
+    int value;
+    init(&s);   //  スタックを初期化
+    //  1,2,3の順で値をプッシュ
+    push(&s, 1);
+    push(&s, 2);
+    push(&s, 3);
+    //  値をポップ
+    while (pop(&s, &value)) {
+        printf("%d ", value);//結果出力
+    }
+    printf("\n");//改行
 }
